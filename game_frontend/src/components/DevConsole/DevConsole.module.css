@@ -1,0 +1,158 @@
+/* Wrapper to hold everything in the bottom left */
+.devConsoleWrapper {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 9999; /* Ensure it floats above absolutely everything */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+/* The Floating Action Button */
+.toggleBtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(20, 20, 35, 0.9);
+  border: 2px solid rgba(0, 242, 254, 0.5);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.toggleBtn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(0, 242, 254, 0.6);
+  background: rgba(20, 20, 35, 1);
+}
+
+/* The Popup Window */
+.consoleWindow {
+  width: 400px;
+  height: 500px;
+  background: rgba(15, 12, 41, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  /* Make it grow upwards from the button */
+  position: absolute;
+  bottom: 65px;
+  left: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header & Tabs */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 10px;
+}
+
+.tabs {
+  display: flex;
+}
+
+.tabBtn {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.tabBtn:hover { color: white; }
+
+.activeTab {
+  color: #00f2fe;
+  border-bottom: 2px solid #00f2fe;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.closeBtn:hover { color: #ff4b2b; }
+
+/* Content Area */
+.contentArea {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+}
+
+/* Terminal Styling */
+.terminal {
+  flex: 1;
+  background: #0d0d0d;
+  padding: 15px;
+  overflow-y: auto;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.terminalOutput p {
+  margin: 5px 0;
+  font-size: 0.85rem;
+  word-break: break-all;
+}
+
+.timestamp {
+  color: #888;
+  margin-right: 8px;
+}
+
+.logInfo { color: #00ff00; } /* Hacker Green */
+.logError { color: #ff4b2b; } /* Alert Red */
+
+/* Dev Updates Styling */
+.updatesList {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.updateCard {
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid #00f2fe;
+  padding: 15px;
+  border-radius: 0 8px 8px 0;
+}
+
+.updateDate {
+  font-size: 0.8rem;
+  color: #00f2fe;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.updateText {
+  color: white;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}

@@ -1,0 +1,13 @@
+/* src/index.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+  display: block; /* Overrides Vite's default flexbox */
+  background-color: #0f0c29; /* Matches your dark theme */
+}

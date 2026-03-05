@@ -1,0 +1,283 @@
+/* Container for the whole page */
+.dashboardContainer {
+  min-height: 100vh;
+  padding: 40px;
+  background: radial-gradient(circle at 50% 0%, #1e133c 0%, #0f0c29 60%, #000000 100%);
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.dashboardHeader h2 {
+  margin: 0;
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.backBtn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.backBtn:hover { background: rgba(255, 255, 255, 0.2); }
+
+/* The Split Layout */
+.splitLayout {
+  display: flex;
+  flex: 1;
+  gap: 30px;
+  height: calc(100vh - 150px);
+}
+
+/* LEFT SIDEBAR */
+.sidebar {
+  width: 300px;
+  background: rgba(20, 20, 35, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 15px;
+}
+
+/* --- NEW: Sidebar Tabs --- */
+.sidebarTabs {
+  display: flex;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebarTabBtn {
+  flex: 1;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.sidebarTabBtn:hover { color: white; }
+.sidebarTabBtn.activeTab {
+  color: #00f2fe;
+  border-bottom: 2px solid #00f2fe;
+}
+
+.userList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.userCard {
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.userCard:hover { background: rgba(255, 255, 255, 0.08); }
+
+.activeCard {
+  background: rgba(0, 242, 254, 0.1);
+  border-color: rgba(0, 242, 254, 0.4);
+}
+
+.userInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userName { font-weight: 600; font-size: 1.1rem; }
+
+.unreadBadge {
+  background: #ff4b2b;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* --- NEW: Access Request Cards --- */
+.requestCard {
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.reqName { font-weight: bold; color: white; }
+.reqEmail { font-size: 0.85rem; color: #aaa; }
+.reqReason { 
+  font-size: 0.85rem; 
+  font-style: italic; 
+  color: rgba(255, 255, 255, 0.7);
+  margin: 5px 0;
+  padding: 5px;
+  background: rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+
+.reqActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.approveBtn, .rejectBtn {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.approveBtn { background: #00f2fe; color: #0f0c29; }
+.rejectBtn { background: transparent; border: 1px solid #ff4b2b; color: #ff4b2b; }
+
+.approveBtn:hover, .rejectBtn:hover { opacity: 0.8; }
+
+
+/* RIGHT AREA: CHAT WINDOW */
+.chatArea {
+  flex: 1;
+  background: rgba(20, 20, 35, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.placeholderState {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-style: italic;
+}
+
+.activeChat {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chatHeader {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chatHeader h3 { margin: 0; }
+
+.messagesWindow {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.messageWrapper { display: flex; width: 100%; }
+
+/* Because YOU are the admin here, admin messages go on the right */
+.adminMsg { justify-content: flex-end; }
+.userMsg { justify-content: flex-start; }
+
+.messageBubble {
+  max-width: 70%;
+  padding: 12px 18px;
+  border-radius: 16px;
+  line-height: 1.4;
+}
+
+.userMsg .messageBubble {
+  background: rgba(255, 255, 255, 0.1);
+  border-bottom-left-radius: 2px;
+}
+
+.adminMsg .messageBubble {
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  color: #0f0c29;
+  font-weight: 500;
+  border-bottom-right-radius: 2px;
+}
+
+/* Input Area */
+.inputArea {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  gap: 15px;
+}
+
+.chatInput {
+  flex: 1;
+  padding: 15px 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+}
+
+.chatInput:focus { border-color: #00f2fe; }
+
+.sendBtn {
+  padding: 0 30px;
+  background: #00f2fe;
+  color: #0f0c29;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.sendBtn:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+}
+.sendBtn:not(:disabled):hover { transform: scale(1.05); }

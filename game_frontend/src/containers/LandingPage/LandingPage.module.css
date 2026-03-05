@@ -1,0 +1,218 @@
+/* src/containers/LandingPage/LandingPage.module.css */
+
+.pageWrapper {
+  min-height: 100vh;
+  /* Same dark gaming gradient */
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding-bottom: 50px;
+}
+
+/* --- GLASS HEADER --- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #00f2fe, #4facfe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.headerButtons {
+  display: flex;
+  gap: 15px;
+}
+
+.loginBtn, .requestBtn {
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.loginBtn {
+  background: transparent;
+  border: 1px solid #4facfe;
+  color: #4facfe;
+}
+
+.loginBtn:hover {
+  background: rgba(79, 172, 254, 0.1);
+}
+
+.requestBtn {
+  background: linear-gradient(135deg, #00f2fe, #4facfe);
+  border: none;
+  color: white;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+  text-align: center;
+  padding: 80px 20px 40px;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* --- GAME GRID --- */
+.gameSection {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+/* --- GLASS GAME CARD --- */
+.gameCard {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  cursor: pointer; /* Makes it look clickable */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gameCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 242, 254, 0.2);
+  border-color: rgba(79, 172, 254, 0.5);
+}
+
+.gameIcon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.comingSoon {
+  opacity: 0.6; /* Faded image look for unavailable games */
+}
+
+/* --- AUTHENTICATED USER NAV --- */
+.userNav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.iconBtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1.2rem;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.iconBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+  transform: translateY(-2px);
+}
+
+/* The red notification dot */
+.notificationBadge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #ff4b2b;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #302b63; /* Matches header background */
+}
+
+/* --- PROFILE DROPDOWN MENU --- */
+.profileMenuContainer {
+  position: relative;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 220px;
+  background: rgba(20, 20, 35, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 10px 0;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdownItem {
+  padding: 12px 20px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dropdownItem:hover {
+  background: rgba(79, 172, 254, 0.15);
+  color: #00f2fe;
+  padding-left: 25px; /* Slick hover indent effect */
+}
+
+.dropdownDivider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 8px 0;
+}

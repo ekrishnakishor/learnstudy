@@ -1,0 +1,204 @@
+/* src/containers/SudokuGame/SudokuGame.module.css */
+
+.pageContainer {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 0%, #1e133c 0%, #0f0c29 60%, #000000 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  padding: 40px 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 25px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #00f2fe, #4facfe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 5px;
+}
+
+.status {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  height: 1.2rem; /* Keeps height consistent so UI doesn't jump */
+}
+
+.timer {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #00f2fe;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 8px 25px;
+  border-radius: 50px;
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  display: inline-block;
+  margin-top: 15px;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.15);
+  letter-spacing: 2px;
+}
+
+/* --- THE GAME BOARD --- */
+.boardContainer {
+  background: rgba(20, 20, 35, 0.6);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 25px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  border: 2px solid #4facfe;
+  background-color: #4facfe; /* The gap color */
+  gap: 1px; /* Creates the thin lines */
+}
+
+.cell {
+  width: clamp(33px, 9vw, 50px);
+  height: clamp(33px, 9vw, 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.1rem, 4vw, 1.5rem);
+  font-weight: 600;
+  background: #0f0c29;
+  color: white;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: none;
+}
+
+/* --- LOGIC FOR 3x3 BOX BORDERS --- */
+/* Right borders for blocks */
+.cell:nth-child(3n) {
+  margin-right: 2px;
+}
+.cell:nth-child(9n) {
+  margin-right: 0;
+}
+
+/* Bottom borders for blocks */
+.cell:nth-child(n+19):nth-child(-n+27),
+.cell:nth-child(n+46):nth-child(-n+54) {
+  margin-bottom: 2px;
+}
+
+.cell:hover {
+  background: rgba(79, 172, 254, 0.2);
+}
+
+.cellSelected {
+  background: #4facfe !important;
+  color: #000 !important;
+}
+
+.cellFixed {
+  /* color: #7a8eb3; */
+  background: rgba(255, 255, 255, 0.05);
+  cursor: default;
+}
+
+.cellError {
+  color: #ff4b2b !important;
+  background: rgba(255, 75, 43, 0.2) !important;
+  animation: shake 0.4s ease-in-out;
+}
+
+/* --- NUMPAD & BUTTONS --- */
+.numpad {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.numBtn {
+  width: 45px;
+  height: 45px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.numBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #4facfe;
+}
+
+.checkBtn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 30px;
+  border: 1px solid #4facfe;
+  background: transparent;
+  color: #4facfe;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.checkBtn:hover {
+  background: #4facfe;
+  color: #000;
+}
+
+.checkBtnCooldown {
+  pointer-events: none;
+  opacity: 0.5;
+  border-color: #555;
+}
+
+.checkBtnCooldown::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 3px;
+  background: #ff4b2b;
+  animation: shrinkTimer 3s linear forwards;
+}
+
+@keyframes shrinkTimer {
+  0% { width: 80%; }
+  100% { width: 0%; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+@media (max-width: 400px) {
+  .pageContainer { padding: 20px 10px; }
+  .title { font-size: 2rem; }
+  .timer { font-size: 1.8rem; }
+}

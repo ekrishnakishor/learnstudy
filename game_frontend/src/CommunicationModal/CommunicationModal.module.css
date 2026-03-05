@@ -1,0 +1,174 @@
+/* Dark, blurry overlay behind the modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* The main modal window */
+.chatContainer {
+  width: 90%;
+  max-width: 400px;
+  height: 600px;
+  background: rgba(20, 20, 35, 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header Section */
+.header {
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.closeBtn:hover { color: #ff4b2b; }
+
+/* Disabled Ticket Button */
+.ticketSection {
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ticketBtn {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: not-allowed;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticketBtn span {
+  color: #f6d365;
+  font-size: 0.85rem;
+}
+
+/* Chat Messages Layout */
+.messagesArea {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.systemText {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.messageWrapper {
+  display: flex;
+  width: 100%;
+}
+
+.adminMsg { justify-content: flex-start; }
+.userMsg { justify-content: flex-end; }
+
+.messageBubble {
+  max-width: 75%;
+  padding: 10px 15px;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #fff;
+}
+
+.adminMsg .messageBubble {
+  background: rgba(255, 255, 255, 0.1);
+  border-bottom-left-radius: 2px;
+}
+
+/* User gets the cool neon gradient! */
+.userMsg .messageBubble {
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  border-bottom-right-radius: 2px;
+  box-shadow: 0 4px 10px rgba(0, 242, 254, 0.2);
+  color: #0f0c29;
+  font-weight: 500;
+}
+
+/* Input Area */
+.inputArea {
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  gap: 10px;
+}
+
+.chatInput {
+  flex: 1;
+  padding: 10px 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  color: #fff;
+  outline: none;
+}
+
+.chatInput:focus { border-color: #00f2fe; }
+
+.sendBtn {
+  padding: 10px 20px;
+  background: #00f2fe;
+  color: #0f0c29;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.sendBtn:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.4);
+  cursor: not-allowed;
+}
+
+.sendBtn:not(:disabled):hover {
+  transform: scale(1.05);
+}
