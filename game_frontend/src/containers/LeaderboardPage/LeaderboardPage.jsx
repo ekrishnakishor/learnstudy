@@ -10,7 +10,8 @@ const LeaderboardPage = () => {
   
   const [timeframe, setTimeframe] = useState('week');
 
-  const API_URL = 'http://127.0.0.1:8000/api';
+  // const API_URL = 'http://127.0.0.1:8000/api';https://learnstudy.vercel.app/api
+  const API_URL = 'https://learnstudy.vercel.app/api'; //https://learnstudy.vercel.app/api
 
   useEffect(() => {
     const fetchLeaderboard = async () => {

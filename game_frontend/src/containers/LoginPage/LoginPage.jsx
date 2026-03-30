@@ -15,7 +15,8 @@ const LoginPage = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   // Django API base URL (Update this if you deploy!)
-  const API_URL = 'http://127.0.0.1:8000/api';
+// const API_URL = 'http://127.0.0.1:8000/api';https://learnstudy.vercel.app/api
+  const API_URL = 'https://learnstudy.vercel.app/api'; //https://learnstudy.vercel.app/api
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

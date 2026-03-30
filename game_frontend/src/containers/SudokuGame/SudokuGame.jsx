@@ -26,7 +26,8 @@ const SudokuGame = () => {
   const [elapsedTime, setElapsedTime] = useState(0);
 
   const navigate = useNavigate();
-  const API_URL = 'http://127.0.0.1:8000/api';
+ // const API_URL = 'http://127.0.0.1:8000/api';https://learnstudy.vercel.app/api
+  const API_URL = 'https://learnstudy.vercel.app/api'; //https://learnstudy.vercel.app/api
 
   // --- 🕵️ FETCH USER PROFILE ---
   useEffect(() => {

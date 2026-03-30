@@ -13,7 +13,8 @@ const Navbar = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
 
-  const API_URL = 'http://127.0.0.1:8000/api';
+  // const API_URL = 'http://127.0.0.1:8000/api';https://learnstudy.vercel.app/api
+  const API_URL = 'https://learnstudy.vercel.app/api'; //https://learnstudy.vercel.app/api
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
