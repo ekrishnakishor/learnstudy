@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import styles from './ProfilePage.module.css';
 
 const ProfilePage = () => {
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const API_URL = 'http://127.0.0.1:8000/api';
 
@@ -14,7 +16,6 @@ const ProfilePage = () => {
       try {
         const token = localStorage.getItem('access_token');
         
-        // Ensure they are logged in before fetching
         if (!token) {
           setError("Please log in to view your profile.");
           setLoading(false);
@@ -29,13 +30,21 @@ const ProfilePage = () => {
         setLoading(false);
       } catch (err) {
         console.error("Error fetching profile:", err);
-        setError("Could not load profile data. Your session may have expired.");
+        
+        if (err.response && err.response.status === 401) {
+          localStorage.removeItem('access_token');
+          localStorage.removeItem('refresh_token');
+          setError("Your session expired. Redirecting to login...");
+          setTimeout(() => navigate('/login'), 2000); 
+        } else {
+          setError("Could not load profile data. The server might be down.");
+        }
         setLoading(false);
       }
     };
 
     fetchProfile();
-  }, []);
+  }, [navigate]);
 
   if (loading) return <div className={styles.pageContainer}><div className={styles.loading}>Loading your stats...</div></div>;
   if (error) return <div className={styles.pageContainer}><div className={styles.error}>{error}</div></div>;

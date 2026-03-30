@@ -8,6 +8,8 @@ import LeaderboardPage from "./containers/LeaderboardPage/LeaderboardPage";
 import ProfilePage from "./containers/ProfilePage/ProfilePage";
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 import DevConsole from "./components/DevConsole/DevConsole";
+import ChessGame from "./containers/ChessGame/ChessGame";
+import TriviaGame from "./containers/TriviaGame/TriviaGame";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
             <Route path="/leaderboard" element={<LeaderboardPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/admin-panel" element={<AdminDashboard />} />
+            <Route path="/chess" element={<ChessGame />} />
+            <Route path="/trivia" element={<TriviaGame />} />
           </Routes>
         </div>
       </div>

@@ -1,23 +1,25 @@
 from django.urls import path
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .views import (
     CreateAccessRequestView, CurrentUserView, RegisterUserView, 
     StudentChatView, UnreadBadgeView, 
-    AdminChatListView, AdminUserChatView, AdminAccessRequestView # <-- Add these two!
+    AdminChatListView, AdminUserChatView, AdminAccessRequestView
 )
 
 urlpatterns = [
-    path('request-access/', CreateAccessRequestView.as_view(), name='request-access'),
-    path('me/', CurrentUserView.as_view(), name='current-user'),
+    # Auth endpoints
     path('register/', RegisterUserView.as_view(), name='register'),
+    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('me/', CurrentUserView.as_view(), name='current_user'),
+    path('request-access/', CreateAccessRequestView.as_view(), name='request_access'),
+
+    # Chat endpoints
+    path('chat/', StudentChatView.as_view(), name='student_chat'),
+    path('chat/unread/', UnreadBadgeView.as_view(), name='unread_badge'),
     
-    # Student Chat Endpoints
-    path('chat/', StudentChatView.as_view(), name='student-chat'),
-    path('chat/unread/', UnreadBadgeView.as_view(), name='chat-unread-badge'),
-
-    # NEW: Admin Chat Endpoints
-    path('admin/chats/', AdminChatListView.as_view(), name='admin-chat-list'),
-    path('admin/chats/<int:user_id>/', AdminUserChatView.as_view(), name='admin-user-chat'),
-
-    path('admin/access-requests/', AdminAccessRequestView.as_view(), name='admin-requests-list'),
-    path('admin/access-requests/<int:req_id>/', AdminAccessRequestView.as_view(), name='admin-requests-update'),
+    # Admin endpoints
+    path('admin/chats/', AdminChatListView.as_view(), name='admin_chat_list'),
+    path('admin/chats/<int:user_id>/', AdminUserChatView.as_view(), name='admin_user_chat'),
+    path('admin/requests/', AdminAccessRequestView.as_view(), name='admin_requests'),
 ]

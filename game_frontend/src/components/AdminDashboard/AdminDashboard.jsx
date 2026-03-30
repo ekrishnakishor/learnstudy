@@ -10,7 +10,7 @@ const AdminDashboard = () => {
   const [newMessage, setNewMessage] = useState('');
   const [loadingUsers, setLoadingUsers] = useState(true);
 
-  const [activeSidebarTab, setActiveSidebarTab] = useState('chats'); // 'chats' or 'requests'
+  const [activeSidebarTab, setActiveSidebarTab] = useState('chats'); 
   const [accessRequests, setAccessRequests] = useState([]);
   const [loadingRequests, setLoadingRequests] = useState(false);
   
@@ -18,12 +18,10 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const API_URL = 'http://127.0.0.1:8000/api';
 
-  // 1. Fetch the list of users who have active chats
   useEffect(() => {
     fetchChatList();
   }, []);
 
-  // 2. Auto-scroll to bottom when new messages load
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
@@ -37,7 +35,6 @@ const AdminDashboard = () => {
       setChatUsers(response.data);
     } catch (error) {
       console.error("Error fetching chat list:", error);
-      // If they get a 403 Forbidden, they aren't an admin! Kick them back home.
       if (error.response && error.response.status === 403) {
         navigate('/'); 
       }
@@ -46,12 +43,12 @@ const AdminDashboard = () => {
     }
   };
 
-  // Fetch pending access requests
   const fetchAccessRequests = async () => {
     setLoadingRequests(true);
     try {
       const token = localStorage.getItem('access_token');
-      const response = await axios.get(`${API_URL}/users/admin/access-requests/`, {
+      // Ensure this endpoint URL matches your urls.py exactly! (Usually '/users/admin/requests/')
+      const response = await axios.get(`${API_URL}/users/admin/requests/`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setAccessRequests(response.data);
@@ -62,25 +59,30 @@ const AdminDashboard = () => {
     }
   };
 
-  // Load requests when the tab switches
   useEffect(() => {
     if (activeSidebarTab === 'requests') {
       fetchAccessRequests();
     }
   }, [activeSidebarTab]);
 
-  // Handle Approve or Reject
+  // --- UPDATED: HANDLE REQUEST ACTION ---
   const handleRequestAction = async (id, action) => {
     try {
       const token = localStorage.getItem('access_token');
-      await axios.patch(`${API_URL}/users/admin/access-requests/${id}/`, 
+      // Ensure this matches urls.py!
+      await axios.patch(`${API_URL}/users/admin/requests/${id}/`, 
         { status: action }, 
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      // Remove the processed request from the screen
+      
       setAccessRequests(prev => prev.filter(req => req.id !== id));
+      
+      // Give the admin immediate feedback
+      alert(`User has been successfully ${action}!`);
+      
     } catch (error) {
       console.error(`Error marking request as ${action}:`, error);
+      alert("Something went wrong. Please try again.");
     }
   };
 
@@ -93,7 +95,6 @@ const AdminDashboard = () => {
       });
       setMessages(response.data);
       
-      // Update the unread count in the sidebar list to 0 since we just read them
       setChatUsers(prev => prev.map(u => 
         u.id === user.id ? { ...u, unread_count: 0 } : u
       ));
@@ -130,10 +131,7 @@ const AdminDashboard = () => {
 
       <div className={styles.splitLayout}>
         
-        {/* LEFT SIDEBAR: User List & Approvals */}
         <div className={styles.sidebar}>
-          
-          {/* TAB TOGGLES */}
           <div className={styles.sidebarTabs}>
             <button 
               className={`${styles.sidebarTabBtn} ${activeSidebarTab === 'chats' ? styles.activeTab : ''}`}
@@ -150,7 +148,6 @@ const AdminDashboard = () => {
           </div>
 
           {activeSidebarTab === 'chats' ? (
-            /* --- EXISTING CHAT LIST --- */
             <>
               {loadingUsers ? (
                 <p className={styles.loadingText}>Loading chats...</p>
@@ -176,7 +173,6 @@ const AdminDashboard = () => {
               )}
             </>
           ) : (
-            /* --- NEW APPROVALS LIST --- */
             <>
               {loadingRequests ? (
                 <p className={styles.loadingText}>Loading requests...</p>
@@ -212,7 +208,6 @@ const AdminDashboard = () => {
           )}
         </div>
 
-        {/* RIGHT AREA: Chat Window */}
         <div className={styles.chatArea}>
           {!selectedUser ? (
             <div className={styles.placeholderState}>

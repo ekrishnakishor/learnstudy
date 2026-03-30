@@ -1,0 +1,215 @@
+.pageContainer {
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 0%, #1e133c 0%, #0f0c29 60%, #000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+.gameContent {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- HEADER --- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  margin: 0;
+  font-weight: 900;
+  background: linear-gradient(135deg, #00f2fe, #4facfe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.quitBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 6px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.quitBtn:hover {
+  background: rgba(255, 75, 43, 0.1);
+  color: #ff4b2b;
+  border-color: #ff4b2b;
+}
+
+/* --- PLAYER INFO & TIMERS --- */
+.playerBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin: 10px 0;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.playerName {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.timer {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-family: monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.lowTime {
+  color: #ff4b2b;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* --- BOARD CONTAINER --- */
+.boardWrapper {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  border: 2px solid #4facfe;
+  margin: 5px 0;
+  touch-action: none !important;
+}
+
+.boardWrapper * {
+  touch-action: none !important;
+}
+
+/* --- STATUS & COACH --- */
+.statusPanel {
+  margin-top: 20px;
+  background: rgba(20, 20, 35, 0.8);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.statusText {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #00f2fe;
+}
+
+.coachBox {
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(0, 242, 254, 0.1);
+  border-left: 4px solid #00f2fe;
+  border-radius: 0 8px 8px 0;
+  text-align: left;
+}
+
+.coachBox strong {
+  color: #00f2fe;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.coachBox p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+}
+
+.restartBtn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 15px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #00f2fe, #4facfe);
+  border: none;
+  color: #0f0c29;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+/* --- START SCREEN --- */
+.startScreen {
+  text-align: center;
+  max-width: 600px;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.modeGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.modeBtn {
+  background: rgba(20, 20, 35, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.modeBtn h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.2rem;
+  color: #00f2fe;
+}
+
+.modeBtn p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.modeBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px);
+  border-color: #4facfe;
+}
+
+.learnBtn { border-left: 4px solid #38ef7d; }
+.friendBtn { border-left: 4px solid #f6d365; }
+
+.quitLink {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.4);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  .modeGrid { grid-template-columns: 1fr; }
+}

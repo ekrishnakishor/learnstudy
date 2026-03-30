@@ -8,19 +8,16 @@ const LeaderboardPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  // NEW: State to track the active filter (defaulting to 'week')
   const [timeframe, setTimeframe] = useState('week');
 
   const API_URL = 'http://127.0.0.1:8000/api';
 
   useEffect(() => {
     const fetchLeaderboard = async () => {
-      setLoading(true); // Ensure loading shows when switching tabs
+      setLoading(true); 
       try {
-        // UPDATED: Pass the timeframe as a query parameter
         const response = await axios.get(`${API_URL}/games/leaderboard/?timeframe=${timeframe}`);
         
-        // UPDATED: Look inside the 'leaderboard' key from our Django response
         setPlayers(response.data.leaderboard);
         setLoading(false);
       } catch (err) {
@@ -31,7 +28,7 @@ const LeaderboardPage = () => {
     };
 
     fetchLeaderboard();
-  }, [timeframe]); // NEW: Re-run this effect whenever the timeframe changes!
+  }, [timeframe]); 
 
   const getRankClass = (index) => {
     if (index === 0) return styles.rank1;
@@ -40,7 +37,6 @@ const LeaderboardPage = () => {
     return '';
   };
 
-  // Helper to dynamically change the subtitle based on the filter
   const getSubtitle = () => {
     if (timeframe === 'all') return 'Top 10 All-Time Highest XP';
     if (timeframe === 'month') return 'Top 10 Highest XP This Month';
@@ -52,7 +48,6 @@ const LeaderboardPage = () => {
       <h1 className={styles.title}>Hall of Fame</h1>
       <p className={styles.subtitle}>{getSubtitle()}</p>
 
-   {/* The Filter Buttons */}
       <div className={styles.filterControls}>
         <button 
           className={`${styles.filterBtn} ${timeframe === 'all' ? styles.activeFilterBtn : ''}`}
@@ -88,7 +83,6 @@ const LeaderboardPage = () => {
               <span className={styles.rank}>#{index + 1}</span>
               <span className={styles.name}>{player.username || `User ${index}`}</span>
             </div>
-            {/* UPDATED: We now use player.xp instead of player.weekly_xp */}
             <span className={styles.score}>{player.xp || 0} XP</span>
           </div>
         ))}
