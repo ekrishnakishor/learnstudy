@@ -10,7 +10,7 @@ const CommunicationModal = ({ isOpen, onClose }) => {
   // This reference allows us to auto-scroll to the bottom of the chat
   const messagesEndRef = useRef(null);
   // const API_URL = 'http://127.0.0.1:8000/api';https://learnstudy.vercel.app/api
-  const API_URL = 'https://learnstudy.vercel.app/api'; //https://learnstudy.vercel.app/api
+  const API_URL = 'https://learnstudy-gzii.onrender.com/api'; //https://learnstudy.vercel.app/api
 
   // Fetch messages whenever the modal is opened
   useEffect(() => {
